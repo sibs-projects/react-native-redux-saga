@@ -8,6 +8,8 @@
 - react-native-vector-icons - awesome icons
 - redux-saga - side effects using generators
 - redux-storage - side redux state tree
+- react-native-navbar - navigation bar
+- react-native-button - buttons for RN
 
 First, install everything
 ```bash
