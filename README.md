@@ -1,7 +1,26 @@
-# React Native Redux
+# React Native Redux Starter Code
+
+## Goodness inside
+
+normalizr - handle complex redux state
+react-native-gifted-spinner - a cool RN loader
+react-native-router-flux - easy navigation/router with redux support
+react-native-vector-icons - awesome icons
+redux-saga - side effects using generators
+redux-storage - side redux state tree
+
+First, install everything
+```bash
+npm i
+```
+
+Then Link
+```
+rnpm link
+```
 
 To run your app on iOS:
-```javascript
+```bash
 react-native run-ios
 ```
 
@@ -11,6 +30,6 @@ Hit the Run button
 To run your app on Android:
 
 Have an Android emulator running (quickest way to get started), or a device connected
-```javascript
+```bash
 react-native run-android
 ```
