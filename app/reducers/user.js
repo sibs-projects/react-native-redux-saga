@@ -28,7 +28,7 @@ export default function user(state = initialState, action) {
         isFetching: false,
         isAuthenticated: false,
         failure: true,
-        errorMessage: action.message,
+        errorMessage: action.err,
       });
     case types.LOGOUT:
       return initialState;

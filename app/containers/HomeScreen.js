@@ -1,30 +1,54 @@
 import React, { Component, View, Text, StyleSheet, TouchableHighlight } from 'react-native';
 import { connect } from 'react-redux';
 import { increment, decrement } from '../actions/counterActions';
+import { Actions } from 'react-native-router-flux';
+import { logout } from '../actions/loginActions';
+import NavigationBar from 'react-native-navbar';
+import Icon from 'react-native-vector-icons/FontAwesome'
 
 class HomeScreen extends Component {
   increment = () => {
-    this.props.increment();
+    this.props.actions.increment();
   };
 
   decrement = () => {
-    this.props.decrement();
+    this.props.actions.decrement();
   };
 
   render() {
-    const { counter } = this.props;
+    const { counter, user } = this.props;
+
+    const titleConfig = {
+      title: 'Home',
+      tintColor: 'black',
+    };
+
+    const logoutButtonConfig = {
+      title: 'Logout',
+      handler: () =>  {
+        this.props.actions.logout();
+        Actions.pop();
+      }
+    };
+
     return (
       <View style={styles.container}>
-        <Text>Home Screen</Text>
-        <Text>Counter: {counter}</Text>
-        <TouchableHighlight
-          onPress={this.increment}>
-          <Text>+</Text>
-        </TouchableHighlight>
-        <TouchableHighlight
-          onPress={this.decrement}>
-          <Text>-</Text>
-        </TouchableHighlight>
+        <NavigationBar
+          title={titleConfig}
+          tintColor="#ADF8D1"
+          rightButton={logoutButtonConfig}
+        />
+        <Text>{JSON.stringify(user)}</Text>
+        <View style={styles.center}>
+          <Text>Counter: {counter}</Text>
+          <Icon.Button
+            name="plus"
+            onPress={this.increment} />
+          <Icon.Button
+            name="minus"
+            background="red"
+            onPress={this.decrement} />
+        </View>
       </View>
     );
   }
@@ -33,9 +57,15 @@ class HomeScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    //flexDirection: 'row'
+  },
+
+  center: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    //flexDirection: 'row'
   },
 
   input: {
@@ -48,17 +78,21 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps(state) {
-  const { counter } = state;
+  const { counter, user } = state;
 
   return {
-    counter
+    counter,
+    user,
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    increment: () => dispatch(increment()),
-    decrement: () => dispatch(decrement())
+    actions: {
+      increment: () => dispatch(increment()),
+      decrement: () => dispatch(decrement()),
+      logout: () => dispatch(logout()),
+    }
   }
 }
 

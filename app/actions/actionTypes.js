@@ -10,6 +10,7 @@ function createRequestTypes(base) {
 
 // Login events
 export const LOGIN = createRequestTypes('LOGIN');
+export const LOGOUT = 'LOGOUT'; // logout is always success
 
 export const INCREMENT = 'INCREMENT';
 export const DECREMENT = 'DECREMENT';

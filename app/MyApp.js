@@ -16,12 +16,9 @@ import ReactNativeRouter, {
   Animations,
   TabBar
 } from 'react-native-router-flux';
-
-import { bindActionCreators } from 'redux';
-import { connect }            from 'react-redux';
-
-import Icon             from 'react-native-vector-icons/FontAwesome';
-
+import { connect } from 'react-redux';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import LoginScreen from './containers/LoginScreen';
 import HomeScreen from './containers/HomeScreen';
 
 // Connect router to redux
@@ -54,6 +51,12 @@ export default class WatchPub extends Component {
           <Schema name="default" sceneConfig={Navigator.SceneConfigs.FloatFromRight} hideNavBar={true}/>
           <Schema name="withoutAnimation"/>
           <Schema name="tab" type="switch" icon={TabIcon}/>
+
+          <Route name="login" schema="modal">
+            <Router>
+              <Route name="signIn" component={LoginScreen} title="Entrar" schema="default" initial={true} />
+            </Router>
+          </Route>
 
           <Route name="main">
             <Router footer={TabBar} tabBarStyle={styles.tabBar} showNavigationBar={false} >
