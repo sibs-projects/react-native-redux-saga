@@ -38,9 +38,9 @@ class TabIcon extends Component {
   }
 }
 
-export default class WatchPub extends Component {
+export default class MyApp extends Component {
   componentDidMount() {
-    StatusBarIOS.setStyle('default');
+    //StatusBarIOS.setStyle('default');
   }
 
   render() {
