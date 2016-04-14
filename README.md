@@ -1,5 +1,8 @@
 # React Native Redux Starter Code
 
+### Login using Redux, Redux Saga and Redux Storage
+Good practice to create a Login using Redux, Redux Saga and Redux Storage, can be easily port to React Web
+
 ## Goodness inside
 
 - normalizr - handle complex redux state
