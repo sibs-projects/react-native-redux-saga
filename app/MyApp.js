@@ -6,23 +6,17 @@ import React, {
   Text,
   View,
   Navigator,
-  StyleSheet
+  StyleSheet,
+  StatusBar,
 } from 'react-native';
-
-import ReactNativeRouter, {
-  Actions,
-  Route,
-  Schema,
-  Animations,
-  TabBar
-} from 'react-native-router-flux';
 import { connect } from 'react-redux';
+
 import Icon from 'react-native-vector-icons/FontAwesome';
+
+import { Router, Scene } from 'react-native-router-flux';
+
 import LoginScreen from './containers/LoginScreen';
 import HomeScreen from './containers/HomeScreen';
-
-// Connect router to redux
-const Router = connect()(ReactNativeRouter.Router);
 
 class TabIcon extends Component {
   render() {
@@ -40,29 +34,29 @@ class TabIcon extends Component {
 
 export default class MyApp extends Component {
   componentDidMount() {
-    //StatusBarIOS.setStyle('default');
+    StatusBar.setBarStyle('light-content');
   }
 
   render() {
+    const { isAuthenticated } = this.props;
+
+    if (!isAuthenticated) {
+      return <LoginScreen />;
+    }
+
     return (
       <View style={styles.container}>
-        <Router hideNavBar={true} >
-          <Schema name="modal" sceneConfig={Navigator.SceneConfigs.FloatFromBottom} hideNavBar={true}/>
-          <Schema name="default" sceneConfig={Navigator.SceneConfigs.FloatFromRight} hideNavBar={true}/>
-          <Schema name="withoutAnimation"/>
-          <Schema name="tab" type="switch" icon={TabIcon}/>
-
-          <Route name="login" schema="modal">
-            <Router>
-              <Route name="signIn" component={LoginScreen} title="Entrar" schema="default" initial={true} />
-            </Router>
-          </Route>
-
-          <Route name="main">
-            <Router footer={TabBar} tabBarStyle={styles.tabBar} showNavigationBar={false} >
-              <Route name="HomeScreen" schema="tab" title="HomeScreen" hideNavBar={true} component={HomeScreen} />
-            </Router>
-          </Route>
+        <Router>
+          <Scene key="root">
+            <Scene key="tabbar" tags={true} tabBarStyle={styles.tabBar} default="home" type="reset" duration={1} initial={true} >
+              <Scene
+                key="home"
+                title="HomeScreen"
+                icon={TabIcon}
+                hideNavBar={true}
+                component={HomeScreen} />
+            </Scene>
+          </Scene>
         </Router>
       </View>
     );
@@ -102,3 +96,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   }
 });
+
+const mapStateToProps = function(state) {
+  const { user } = state;
+  return {
+    isAuthenticated: user.isAuthenticated,
+  }
+};
+
+export default connect(mapStateToProps)(MyApp);

@@ -1,7 +1,6 @@
 import React from 'react-native';
 import { take, put, call, fork, select } from 'redux-saga/effects'
 import * as types from '../actions/actionTypes';
-import { Actions } from 'react-native-router-flux';
 import { loginSuccess, loginFailure } from '../actions/loginActions'
 
 const loginData = {
@@ -38,7 +37,6 @@ function *watchLoginRequest() {
 
       yield put(loginSuccess(response));
       console.log('SAGA LOGIN SUCCESS: ', response);
-      yield call(Actions.main);
     } catch (err) {
       console.log('SAGA LOGIN ERR: ', err);
       yield put(loginFailure(err.status));
