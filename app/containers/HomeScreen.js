@@ -7,14 +7,6 @@ import NavigationBar from 'react-native-navbar';
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 class HomeScreen extends Component {
-  increment = () => {
-    this.props.actions.increment();
-  };
-
-  decrement = () => {
-    this.props.actions.decrement();
-  };
-
   render() {
     const { counter, user } = this.props;
 
@@ -26,7 +18,7 @@ class HomeScreen extends Component {
     const logoutButtonConfig = {
       title: 'Logout',
       handler: () =>  {
-        this.props.actions.logout();
+        this.props.logout();
         Actions.pop();
       }
     };
@@ -43,11 +35,11 @@ class HomeScreen extends Component {
           <Text>Counter: {counter}</Text>
           <Icon.Button
             name="plus"
-            onPress={this.increment} />
+            onPress={this.props.increment} />
           <Icon.Button
             name="minus"
             background="red"
-            onPress={this.decrement} />
+            onPress={this.props.decrement} />
         </View>
       </View>
     );
@@ -86,14 +78,10 @@ function mapStateToProps(state) {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: {
-      increment: () => dispatch(increment()),
-      decrement: () => dispatch(decrement()),
-      logout: () => dispatch(logout()),
-    }
-  }
+const actions = {
+  increment,
+  decrement,
+  logout
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
+export default connect(mapStateToProps, actions)(HomeScreen);
