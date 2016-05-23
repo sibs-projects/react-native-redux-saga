@@ -1,14 +1,7 @@
 'use strict';
 
-import React, {
-  Component,
-  StatusBarIOS,
-  Text,
-  View,
-  Navigator,
-  StyleSheet,
-  StatusBar,
-} from 'react-native';
+import React, {Component} from 'react';
+import {StatusBarIOS, Text, View, Navigator, StyleSheet, StatusBar} from 'react-native';
 import { connect } from 'react-redux';
 
 import Icon from 'react-native-vector-icons/FontAwesome';

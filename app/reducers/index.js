@@ -6,5 +6,5 @@ import entities from './entities'
 export default combineReducers({
   counter,
   user,
-  entities,
+  //entities,
 });

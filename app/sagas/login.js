@@ -1,4 +1,4 @@
-import React from 'react-native';
+import React from 'react';
 import { take, put, call, fork, select } from 'redux-saga/effects'
 import * as types from '../actions/actionTypes';
 import { loginSuccess, loginFailure } from '../actions/loginActions'

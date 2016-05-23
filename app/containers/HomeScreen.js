@@ -1,4 +1,5 @@
-import React, { Component, View, Text, StyleSheet, TouchableHighlight } from 'react-native';
+import React, {Component} from 'react';
+import {View, Text, StyleSheet, TouchableHighlight} from 'react-native';
 import { connect } from 'react-redux';
 import { increment, decrement } from '../actions/counterActions';
 import { Actions } from 'react-native-router-flux';

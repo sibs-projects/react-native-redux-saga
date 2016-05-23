@@ -1,11 +1,5 @@
-import React, {
-  Component,
-  View,
-  Text,
-  StyleSheet,
-  TouchableHighlight,
-  TextInput,
-} from 'react-native';
+import React, {Component} from 'react';
+import {View, Text, StyleSheet, TouchableHighlight, TextInput} from 'react-native';
 import NavigationBar from 'react-native-navbar';
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { connect } from 'react-redux';
