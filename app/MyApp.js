@@ -25,7 +25,7 @@ class TabIcon extends Component {
   }
 }
 
-export default class MyApp extends Component {
+class MyApp extends Component {
   componentDidMount() {
     StatusBar.setBarStyle('light-content');
   }
